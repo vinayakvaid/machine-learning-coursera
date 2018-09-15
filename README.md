@@ -1,2 +1,4 @@
 # machine-learning-coursera
-Coursera assignments of Machine Learning course by Andrew Ng
+Contains:
+> Coursera assignments of Machine Learning course by Andrew Ng
+> Additional helpful material
