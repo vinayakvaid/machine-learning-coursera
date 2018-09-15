@@ -1,0 +1,27 @@
+a_one = [ones(m,1) X];
+
+temp_y = zeros(m,num_labels);
+y1 = [10 1 2 3 4 5 6 7 8 9];
+for i=1:m,
+	temp_y(i,:) = (y1 == y(i));
+end
+
+
+for i = 1:m,
+	
+z_two = Theta1 * a_one(i,:)' ;
+	
+a_two = sigmoid(z_two);
+a_two = [1;a_two];
+	
+z_three = Theta2 * a_two;
+a_three = sigmoid(z_three);
+temp_hypo = a_three;
+	
+	J = J +( temp_y(i,:) * log(temp_hypo) ) + ( (1-temp_y(i,:)) * (log(1 - temp_hypo) ) );	
+	
+	
+	
+end
+
+J  = -J/m;
