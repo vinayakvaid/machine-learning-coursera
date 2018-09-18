@@ -15,8 +15,14 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+% First column of X_poly will be same as of X's first column
+X_poly(:,1) = X(:,1);
+for i = 2:p,
+   
+   % Creating polynomial features such that 2nd column features are square of first column, third column are cube of first column and so on
+   X_poly (:,i) = X(:,1).^ i;
 
-
+end
 
 
 

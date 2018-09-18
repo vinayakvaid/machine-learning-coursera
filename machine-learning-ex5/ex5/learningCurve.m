@@ -54,7 +54,23 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
+for i = 1:m,
+   % Taking subsets of X and y 
+   temp_X = X(1:i, :);
+   temp_y = y(1:i);
 
+   % Running linear regression to calculate theta
+   theta = trainLinearReg(temp_X, temp_y, lambda);
+
+   % Initialising lambda for calculating training and cross validation errors
+   lambda_for_error = 0;
+
+   % Calling the cost function with lambda = 0 to calculate errors
+   error_train(i) = linearRegCostFunction(temp_X, temp_y, theta, lambda_for_error );
+
+   % Errors for cross validation should be calculated on whole set of CV examples
+   error_val(i) = linearRegCostFunction(Xval, yval, theta, lambda_for_error );
+end
 
 
 

@@ -40,7 +40,23 @@ error_val = zeros(length(lambda_vec), 1);
 %
 
 
+for i = 1:length(lambda_vec),
+   
+   lambda = lambda_vec(i);
 
+   % Running linear regression to calculate thetas
+   theta = trainLinearReg(X, y, lambda);
+
+   % Initialising lambda for calculating training and cross validation errors
+   lambda_for_error = 0;
+
+   % Calling the cost function with lambda = 0 to calculate errors
+   error_train(i) = linearRegCostFunction(X, y, theta, lambda_for_error );
+
+   % Errors for cross validation should be calculated on whole set of CV examples
+   error_val(i) = linearRegCostFunction(Xval, yval, theta, lambda_for_error );
+
+end
 
 
 
