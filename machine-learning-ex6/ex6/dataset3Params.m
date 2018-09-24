@@ -23,11 +23,14 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+% Randomly initialising some values for C and sigma
 C_tried = [0.01; 0.03; 0.1; 0.3; 1; 3; 10; 30];
 sigma_tried = [0.1; 0.3; 0.5; 1; 1.5; 2; 3; 4];
+
+% Declaring error matrix which will be 8*8 in this case
 error = zeros(length(C_tried), length(sigma_tried));
 
-
+% Training model using SVM and calculating errors and storing them
 for i = 1:length(C_tried),
    
    for j = 1:length(sigma_tried),
@@ -43,9 +46,11 @@ for i = 1:length(C_tried),
 end
 
 %error
+% Calculating the minimum error
 min_value = min( min(error) );
 %min_value
 
+% Getting the index values of the min error and then getting C and sigma
 for  i = 1:length(C_tried),
    for j = 1:length(sigma_tried);
 

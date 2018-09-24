@@ -15,6 +15,8 @@ sim = 0;
 %               sigma
 %
 %
+
+% Formula for calculating gaussian kernel
 sim = e^(-( sum((x1-x2).^2) )/ (2* (sigma)^2) );
 
 
