@@ -99,8 +99,17 @@ while ~isempty(email_contents)
 
 
 
+for i = 1:length(vocabList),
+   
+   if ( strcmp(str,vocabList{i}) == 1 )
+	
+      word_indices( length(word_indices) + 1 ) = i;
+      
+      break;
 
-
+   endif   
+ 
+end
 
 
 
