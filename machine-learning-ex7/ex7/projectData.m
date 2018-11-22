@@ -18,7 +18,11 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% calculating first K eigen vectors
+U_reduce = U(:,1:K);
 
+% calculating projections means reduced data having less dimensions
+Z = X* U_reduce;
 
 
 % =============================================================

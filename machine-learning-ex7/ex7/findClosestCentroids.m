@@ -21,8 +21,31 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+norm_distances = zeros(size(X,1),K);
 
+for i = 1:size(X,1),
+   
+  for j = 1:K,
+     
+     % we are calculating the distance of each point from the     	centroids and storing the distances in the rows of a 	%%temporary matrix
 
+     distance = norm ( X(i,:) - centroids(j,:) );
+     distance = distance * distance;
+     %distance = sum(power( (X(i,:) - centroids(j,:) ) , 2));
+     norm_distances(i,j) = distance;
+
+  end
+
+end
+
+% here we are taking the distances and finding the min distance to perform centroid assignment step
+for i = 1:size(norm_distances,1),
+
+  row_under_invest = norm_distances(i,:);
+  [val, ind] = min(row_under_invest);
+  idx(i,1) = ind;  
+
+end
 
 
 
