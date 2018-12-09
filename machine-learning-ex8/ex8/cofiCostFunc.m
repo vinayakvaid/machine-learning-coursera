@@ -48,7 +48,13 @@ Theta_grad = zeros(size(Theta));
 
 
 
+Rated_error = (X*Theta' - Y) .* R;
 
+J = sum(sum( Rated_error .^ 2)) / 2 ...
+      + lambda / 2 * sum(Theta(:).^2) + lambda / 2 * sum(X(:).^2);
+
+X_grad = Rated_error * Theta + lambda * X;
+Theta_grad = Rated_error' * X + lambda * Theta;
 
 
 
