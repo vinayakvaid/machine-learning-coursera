@@ -70,6 +70,7 @@ a2 = [ones(1, size(z1, 2)); z1];
 a3 = sigmoid(Theta2 * a2);
 h = a3;
 
+
 % Now we tranform the y result vector into a matrix where 1s in the
 % columns map to the corresponding values of y
 yMatrix = zeros(num_labels, m);
@@ -84,7 +85,6 @@ end
 
 % Note that for this vectorized implementation, y(i)k is given as
 % yMatrix and h is given as h(thetha)(x(i))k
-
 J = (sum( sum( -1*yMatrix.*log(h) - (1 - yMatrix).*log(1-h) ) ))/m;
 
 
@@ -115,6 +115,7 @@ J = J + temp_reg_term;
 capital_delta1 = zeros(size(Theta1));
 capital_delta2 = zeros(size(Theta2));
 
+
 for i= 1:m,
 	
 % performing feed forward propagation to calculate activations of all units in network
@@ -134,16 +135,17 @@ for i= 1:m,
   delta3 = temp_hypothesis - yMatrix(:,i);
   %delta3 = temp_hypothesis - temp_y(i,:)';
 
+
 % calculating delta2, also we will add bias term to z_two
   z_two = [1 ; z_two];
   delta2 = (Theta2' * delta3) .* sigmoidGradient(z_two);
+
 
 % calculating capital_delta1 and capital_delta2 and also, we will be removing delta2_0 since we are not considering regularistion here
   delta2 = delta2(2:end);
   capital_delta1 = capital_delta1 + ( delta2 * a_one );
   capital_delta2 = capital_delta2 + ( delta3 * a_two' );
   
-
 end
 
 % calculating unregularized gradient by dividing the accumulated gradients by m 
